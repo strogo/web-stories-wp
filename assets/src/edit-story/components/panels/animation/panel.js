@@ -29,7 +29,10 @@ import { v4 as uuidv4 } from 'uuid';
 /**
  * Internal dependencies
  */
-import { ANIMATION_EFFECTS } from '../../../../animation/constants';
+import {
+  ANIMATION_EFFECTS,
+  BACKGROUND_ANIMATION_EFFECTS,
+} from '../../../../animation/constants';
 import { getAnimationEffectDefaults } from '../../../../animation/parts';
 import StoryPropTypes, { AnimationPropType } from '../../../types';
 import { Row, DropDown } from '../../form';
@@ -40,6 +43,11 @@ import EffectPanel from './effectPanel';
 const ANIMATION_OPTIONS = [
   { value: '', name: __('Add Effect', 'web-stories') },
   ...Object.values(ANIMATION_EFFECTS),
+];
+
+const BACKGROUND_ANIMATION_OPTIONS = [
+  { value: '', name: __('Add Effect', 'web-stories') },
+  ...Object.values(BACKGROUND_ANIMATION_EFFECTS),
 ];
 
 const ANIMATION_PROPERTY = 'animation';
@@ -97,6 +105,9 @@ function AnimationPanel({
       .filter((a) => !a.delete);
   }, [selectedElements, selectedElementAnimations]);
 
+  const isBackground =
+    selectedElements.length === 1 && selectedElements[0].isBackground;
+
   return selectedElements.length > 1 ? (
     <SimplePanel name="animation" title={__('Animation', 'web-stories')}>
       <Row>
@@ -107,9 +118,15 @@ function AnimationPanel({
     <>
       <SimplePanel name="animation" title={__('Animation', 'web-stories')}>
         <DropDown
-          value={ANIMATION_OPTIONS[0].value}
+          value={
+            isBackground
+              ? BACKGROUND_ANIMATION_OPTIONS[0].value
+              : ANIMATION_OPTIONS[0].value
+          }
           onChange={handleAddEffect}
-          options={ANIMATION_OPTIONS}
+          options={
+            isBackground ? BACKGROUND_ANIMATION_OPTIONS : ANIMATION_OPTIONS
+          }
         />
       </SimplePanel>
       {updatedAnimations.map((animation) => (
