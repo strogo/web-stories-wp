@@ -41,6 +41,7 @@ import { SimplePanel } from '../panel';
 import { Note } from '../shared';
 import EffectPanel from './effectPanel';
 
+// @TODO use progress fn if we have it in dashboard.
 const getZoomFromScale = (scale) =>
   (scale - MIN_SCALE) / (MAX_SCALE - MIN_SCALE);
 
@@ -86,11 +87,11 @@ function AnimationPanel({
 
       const defaults = getAnimationEffectDefaults(type);
 
-      // Background Zoom's `zoom from` initial value should match
+      // Background Zoom's `scale from` initial value should match
       // the current background's scale slider
       if (isBackground && type === BACKGROUND_ANIMATION_EFFECTS.ZOOM.value) {
-        defaults.zoomFrom =
-          getZoomFromScale(backgroundScale) || defaults.zoomFrom;
+        defaults.normalizedScaleFrom =
+          getZoomFromScale(backgroundScale) || defaults.normalizedScaleFrom;
       }
 
       pushUpdateForObject(
