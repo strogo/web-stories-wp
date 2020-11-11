@@ -34,11 +34,15 @@ import {
   BACKGROUND_ANIMATION_EFFECTS,
 } from '../../../../animation/constants';
 import { getAnimationEffectDefaults } from '../../../../animation/parts';
+import { MAX_SCALE, MIN_SCALE } from '../../../elements/media/scalePanel';
 import StoryPropTypes, { AnimationPropType } from '../../../types';
 import { Row, DropDown } from '../../form';
 import { SimplePanel } from '../panel';
 import { Note } from '../shared';
 import EffectPanel from './effectPanel';
+
+const getZoomFromScale = (scale) =>
+  (scale - MIN_SCALE) / (MAX_SCALE - MIN_SCALE);
 
 const ANIMATION_OPTIONS = [
   { value: '', name: __('Add Effect', 'web-stories') },
@@ -71,6 +75,9 @@ function AnimationPanel({
     [pushUpdateForObject]
   );
 
+  const isBackground =
+    selectedElements.length === 1 && selectedElements[0].isBackground;
+  const backgroundScale = isBackground && selectedElements[0].scale;
   const handleAddEffect = useCallback(
     (type) => {
       if (!type) {
@@ -78,6 +85,14 @@ function AnimationPanel({
       }
 
       const defaults = getAnimationEffectDefaults(type);
+
+      // Background Zoom's `zoom from` initial value should match
+      // the current background's scale slider
+      if (isBackground && type === BACKGROUND_ANIMATION_EFFECTS.ZOOM.value) {
+        defaults.zoomFrom =
+          getZoomFromScale(backgroundScale) || defaults.zoomFrom;
+      }
+
       pushUpdateForObject(
         ANIMATION_PROPERTY,
         {
@@ -89,7 +104,7 @@ function AnimationPanel({
         true
       );
     },
-    [pushUpdateForObject]
+    [pushUpdateForObject, isBackground, backgroundScale]
   );
 
   const updatedAnimations = useMemo(() => {
@@ -104,9 +119,6 @@ function AnimationPanel({
       }))
       .filter((a) => !a.delete);
   }, [selectedElements, selectedElementAnimations]);
-
-  const isBackground =
-    selectedElements.length === 1 && selectedElements[0].isBackground;
 
   return selectedElements.length > 1 ? (
     <SimplePanel name="animation" title={__('Animation', 'web-stories')}>
