@@ -37,7 +37,6 @@ function VideoOutput({ element, box }) {
     poster: defaultForUndefined(element.poster, resource.poster),
     artwork: defaultForUndefined(element.poster, resource.poster),
     title: defaultForUndefined(element.title, resource.title),
-    alt: defaultForUndefined(element.alt, resource.alt),
     layout: 'fill',
     loop: loop ? 'loop' : undefined,
   };

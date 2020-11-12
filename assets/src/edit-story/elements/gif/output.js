@@ -33,7 +33,6 @@ function GifOutput({ element, box }) {
         poster={resource.output.poster || ''}
         layout="fill"
         title={element.title ?? resource.title}
-        alt={element.alt ?? resource.alt}
       >
         <source type={resource.output.mimeType} src={resource.output.src} />
       </amp-video>
