@@ -28,7 +28,7 @@ export class Link extends AbstractPanel {
   }
 
   get address() {
-    return this.getByRole('textbox', { name: /Edit: Element link/i });
+    return this.getByRole('textbox', { name: /Element link/i });
   }
 
   get addressClear() {
@@ -40,6 +40,6 @@ export class Link extends AbstractPanel {
   }
 
   get description() {
-    return this.queryByRole('textbox', { name: /Edit: link description/i });
+    return this.queryByRole('textbox', { name: /link description/i });
   }
 }
