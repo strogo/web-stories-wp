@@ -53,6 +53,7 @@ function ShapeStylePanel({ selectedElements, pushUpdate }) {
           label={__('Background color', 'web-stories')}
           hasOpacity={!isBackground}
           colorPickerActions={getColorPickerActions}
+          tabIndex="-1"
         />
       </Row>
     </SimplePanel>

@@ -165,7 +165,7 @@ function SizePositionPanel({
     <SimplePanel name="size" title={__('Size & position', 'web-stories')}>
       {isMedia && isSingleElement && (
         <Row expand>
-          <Button onClick={handleSetBackground} fullWidth>
+          <Button onClick={handleSetBackground} fullWidth tabIndex="-1">
             {__('Set as background', 'web-stories')}
           </Button>
         </Row>
@@ -180,6 +180,7 @@ function SizePositionPanel({
           onChange={(value) => pushUpdate({ x: value })}
           aria-label={__('X position', 'web-stories')}
           canBeNegative
+          tabIndex="-1"
         />
         <Spacer />
         <BoxedNumeric
@@ -190,6 +191,7 @@ function SizePositionPanel({
           onChange={(value) => pushUpdate({ y: value })}
           aria-label={__('Y position', 'web-stories')}
           canBeNegative
+          tabIndex="-1"
         />
       </Row>
       {/** Width/height & lock ratio */}
@@ -212,9 +214,11 @@ function SizePositionPanel({
             pushUpdate(getUpdateObject(newWidth, newHeight));
           }}
           aria-label={__('Width', 'web-stories')}
+          tabIndex="-1"
         />
         <StyledToggle
           aria-label={__('Aspect ratio lock', 'web-stories')}
+          tabIndex="-1"
           title={__('Constrain proportions', 'web-stories')}
           icon={<Locked />}
           uncheckedIcon={<Unlocked />}
@@ -241,6 +245,7 @@ function SizePositionPanel({
             pushUpdate(getUpdateObject(newWidth, newHeight));
           }}
           aria-label={__('Height', 'web-stories')}
+          tabIndex="-1"
         />
       </Row>
       {/** Rotation and Flipping */}
@@ -254,6 +259,7 @@ function SizePositionPanel({
           onChange={(value) => pushUpdate({ rotationAngle: value })}
           aria-label={__('Rotation', 'web-stories')}
           canBeNegative
+          tabIndex="-1"
         />
         {canFlip && (
           <FlipControls

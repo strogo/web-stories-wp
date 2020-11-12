@@ -79,6 +79,7 @@ function LinkInput({ onChange, onBlur, onFocus, value, description, ...rest }) {
           minLength={MIN_MAX.URL.MIN}
           maxLength={MIN_MAX.URL.MAX}
           {...rest}
+          tabIndex="-1"
         />
       </Row>
       {value.length > 0 && !isValid && (

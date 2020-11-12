@@ -67,6 +67,7 @@ function LayerStylePanel({ selectedElements, pushUpdate }) {
           min={MIN_MAX.OPACITY.MIN}
           max={MIN_MAX.OPACITY.MAX}
           aria-label={__('Opacity in percentage', 'web-stories')}
+          tabIndex="-1"
         />
       </Row>
     </SimplePanel>

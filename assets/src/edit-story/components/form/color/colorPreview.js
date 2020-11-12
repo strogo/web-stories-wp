@@ -291,6 +291,7 @@ function ColorPreview({
           <VisualPreviewButton
             {...buttonProps}
             color={previewStyle?.backgroundColor}
+            tabIndex="-1"
           >
             {(value?.a < 1 || isMixed) && <Transparent />}
             <CurrentColor role="status" style={previewStyle} />
@@ -299,6 +300,7 @@ function ColorPreview({
             ref={inputRef}
             type="text"
             aria-label={`${inputLabel}: ${label}`}
+            tabIndex="-1"
             value={inputValue ?? ''}
             onChange={handleInputChange}
             onBlur={handleInputBlur}

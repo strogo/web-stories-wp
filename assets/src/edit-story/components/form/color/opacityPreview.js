@@ -77,6 +77,7 @@ function OpacityPreview({ value, onChange }) {
       ref={ref}
       type="text"
       aria-label={__('Opacity', 'web-stories')}
+      tabIndex="-1"
       isVisible={hasPreviewText}
       onBlur={() => {
         handleBlur();

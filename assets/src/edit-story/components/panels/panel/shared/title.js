@@ -192,6 +192,8 @@ function Title({
       isPrimary={isPrimary}
       isSecondary={isSecondary}
       hasResizeHandle={isResizable && !isCollapsed}
+      aria-expanded={!isCollapsed}
+      role="button"
     >
       {isResizable && (
         <DragHandle
