@@ -23,7 +23,7 @@ import { useFeatures } from 'flagged';
 /**
  * Internal dependencies
  */
-import { STORY_ANIMATION_STATE } from '../../../../animation';
+import { clamp, STORY_ANIMATION_STATE } from '../../../../animation';
 import { UnitsProvider } from '../../../../edit-story/units';
 import { TransformProvider } from '../../../../edit-story/components/transform';
 import stripHTML from '../../../../edit-story/utils/stripHTML';
@@ -36,7 +36,7 @@ import {
   STORY_STATUS,
 } from '../../../constants';
 import { PreviewPage } from '../../../components';
-import { clamp, getPagePreviewHeights } from '../../../utils';
+import { getPagePreviewHeights } from '../../../utils';
 import FontProvider from '../../font/fontProvider';
 import useApi from '../../api/useApi';
 import UpdateTemplateForm from './updateTemplateForm';
