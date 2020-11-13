@@ -34,7 +34,7 @@ import StoryPropTypes, { AnimationPropType } from '../../../types';
 import { Row } from '../../form';
 import { SimplePanel } from '../panel';
 import { Note } from '../shared';
-import EffectPanel from './effectPanel';
+import EffectPanel, { getEffectName } from './effectPanel';
 import EffectChooserDropdown from './effectChooserDropdown';
 
 const ANIMATION_PROPERTY = 'animation';
@@ -103,7 +103,10 @@ function AnimationPanel({
     <>
       <SimplePanel name="animation" title={__('Animation', 'web-stories')}>
         <Row>
-          <EffectChooserDropdown onAnimationSelected={handleAddEffect} />
+          <EffectChooserDropdown
+            onAnimationSelected={handleAddEffect}
+            selectedEffectTitle={getEffectName(updatedAnimations[0]?.type)}
+          />
         </Row>
       </SimplePanel>
       {updatedAnimations.map((animation) => (

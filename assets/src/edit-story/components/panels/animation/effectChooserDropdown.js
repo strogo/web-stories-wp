@@ -43,14 +43,19 @@ const Container = styled.div`
   ${ScrollBarStyles}
 `;
 
-export default function EffectChooserDropdown({ onAnimationSelected }) {
+export default function EffectChooserDropdown({
+  onAnimationSelected,
+  selectedEffectTitle,
+}) {
   const selectRef = useRef();
   const dropdownRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <DropDownSelect ref={selectRef} onClick={() => setIsOpen(!isOpen)}>
-      <DropDownTitle>{__('Select Animation', 'web-stories')}</DropDownTitle>
+      <DropDownTitle>
+        {selectedEffectTitle || __('Select Animation', 'web-stories')}
+      </DropDownTitle>
       <DropdownIcon />
       <Popup
         anchor={selectRef}
@@ -70,4 +75,5 @@ export default function EffectChooserDropdown({ onAnimationSelected }) {
 
 EffectChooserDropdown.propTypes = {
   onAnimationSelected: propTypes.func.isRequired,
+  selectedEffectTitle: propTypes.string,
 };
